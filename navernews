@@ -1,0 +1,35 @@
+네이버 뉴스 일자별로 , 파트별로 스크래핑해오기 !!!!
+
+library(rvest)
+library(stringr)
+library(tibble)
+url = "https://news.naver.com/main/ranking/popularDay.nhn?rankingType=popular_day&sectionId=100&date=20180803"
+title = c()
+date_frame = tibble(
+	date = numeric(),
+	economy = character(),
+	social = character(),
+	live = character(),
+	world = character(),
+	it = character()
+)
+hdoc = read_html(url)
+main = html_nodes(hdoc,"div.ranking_headline")%>%html_nodes("a")%>%html_text()
+
+date_frame[1:30,] = 0
+date_frame
+for (i in 1:30){
+	for (j in 100:105){
+		url_1 = "https://news.naver.com/main/ranking/popularDay.nhn?rankingType=popular_day&sectionId="
+		url_2 = "&date=" 
+		date = 20180701+(i-1)
+		date_main = as.character(date)
+		url_total = paste0(url_1,j,url_2,date_main)
+		hdoc = read_html(url_total)
+		main = html_nodes(hdoc,"div.ranking_headline")%>%html_nodes("a")%>%html_text()
+		date_frame[i,1] = date_main
+		date_frame[i,(j+2)-100] = main[1]
+	}
+}
+date_frame
+write.csv(date_frame,"date_frame2.csv")
