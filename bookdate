@@ -1,0 +1,26 @@
+library(rvest)
+url_1="http://www.yes24.com/24/category/bestseller?CategoryNumber=001&sumgb=07&year="
+url_2="&month="
+url_3="day="
+
+library(tibble)
+
+book_data=tibble(
+   date=numeric(),
+   book_title=character()
+)
+book_data[1:10,]=0
+book_data
+
+for(i in 1:10){
+   date = gsub('-','',as.Date("2018-01-01")+i-1)
+   year = substr(date,1,4)
+   month = substr(date,5,6)
+   day = substr(date,7,8)
+   url=paste0(url_1,year,url_2,month,url_3,day)
+   nv=read_html(iconv(url, from = "euc-kr", to = "CP949"), encoding = "CP949")
+   nvns=html_nodes(nv,"td.goodsTxtInfo")%>%html_nodes("p")%>%html_nodes("a")%>%html_text()
+   book_data[i,1]=date
+   book_data[i,2]=nvns[1]
+   }
+book_data
