@@ -26,10 +26,10 @@ b_css = 	#css값들
 hdoc = read_html(url_crawl) 	#url주소에 해당하는 html을 모두 읽어오는것
 
 t_node = html_nodes(hdoc,t_css)  #css에 해당하는 node를 불러들이는것
-				node와 nodes의 차이는 
-			   	node의 경우에는 하나의 css만 존재할때 사용
-			   	nodes는 여러개의 css가 존재할떄 사용
-			   	hdoc에서 t_css에 해당하는 nodes를 가져오겠다.
+				 #node와 nodes의 차이는 
+			   	 #node의 경우에는 하나의 css만 존재할때 사용
+			   	 #nodes는 여러개의 css가 존재할떄 사용
+			   	 #hdoc에서 t_css에 해당하는 nodes를 가져오겠다.
 				
 pt_node = html_nodes(hdoc,pt_css)
 b_node = httml_nodes(hdoc,b_css)
