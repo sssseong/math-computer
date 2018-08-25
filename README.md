@@ -1,6 +1,7 @@
 # math-computer
 
 --------R로 다음뉴스크롤링하기---------
+=====================================
 
 install.package('rvest')
 install.package('stringr')
@@ -8,11 +9,11 @@ install.package('stringr')
 library(rvest) 
 library(stringr)
 
-title = c()      #크롤링한걸 담을 그릇	
-press = c()      #	 
-time = c()	 # 	
-body = c()       #
-url = c()        #
+title = c()      <<크롤링한걸 담을 그릇	
+press = c()      	 
+time = c()	  	
+body = c()       
+url = c()        
 
 url_crawl =  #크롤링하고 싶은 url
 
